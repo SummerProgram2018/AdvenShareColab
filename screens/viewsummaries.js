@@ -6,8 +6,11 @@ export default class Diary extends Component<Props> {
   constructor (props, context) {
     super (props, context);
     this.state = {
+      searchText: 'Search',
+      text: 'Enter your diary text here',
+      savedText: '',
       numEntries = 0,
-      lastDate = ''
+      lastDate = '',
     };
 
     onPressAddEntry () {
@@ -15,11 +18,23 @@ export default class Diary extends Component<Props> {
       var month = new Date().getMonth() + 1;
       var year = new Date().getFullYear();
       fullDate = {date: day + '/' + month + '/' + year};
-      this.setState({numEntries: numEntries + 1});
+      if (fullDate != this.state.lastDate) {
+        this.setState({lastDate: fullDate});
+        this.setState({numEntries: numEntries + 1});
+      }
+
     }
 
     render () {
       return(
+        <View style={styles.container}>
+          <Image style={styles.backgroundImage} source={require('../res/cloud.png')}/>
+          <TextInput
+            blurOnSubmit = {false}
+            style = {{height: 40, width: 400, borderColor: 'blue', borderWidth: 1}}
+            onChangeText = {(searchText) => this.setState({searchText})}
+            value = {this.state.searchText}
+          />
 
       )
     }

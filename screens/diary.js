@@ -25,59 +25,123 @@ class DiaryTextInput extends Component{
 
 
 
-export default class Diary extends Component<Props> {
+class DiaryEntry extends Component<Props> {
   constructor (props, context) {
-    super (props, context);
-    this.state = {
-      text: 'Enter your diary text here',
-      savedText: '',
-      date: '',
-    };
-    onPressLearnMore = this.onPressLearnMore.bind(this)
+      super (props, context);
+      this.state = {
+        text: 'Enter your diary text here',
+        savedText: '',
+        date: '',
+      };
+      onPressLearnMore = this.onPressLearnMore.bind(this)
+    }
+
+    onPressLearnMore() {
+      this.setState({savedText: this.state.savedText + this.state.text + "\n"});
+      this.setState({text: ""});
+      var day = new Date().getDate();
+      var month = new Date().getMonth() + 1;
+      var year = new Date().getFullYear();
+      this.setState({date: day + '/' + month + '/' + year});
+    }
+
+    render () {
+      return (
+        <View style={styles.container}>
+          <Image style={styles.backgroundImage} source={require('../res/cloud.png')}/>
+          <TextInput
+            blurOnSubmit = {false}
+            style = {{height: 80, width: 400, borderColor: 'blue', borderWidth: 1}}
+            onChangeText = {(text) => this.setState({text})}
+            value = {this.state.text}
+          />
+          <View style={styles.button}>
+          <Button
+            title = "Save Entry"
+            color = "#841584"
+            onPress={onPressLearnMore}
+            />
+          </View>
+          <View style={styles.list}>
+          <Text> {this.state.date} </Text>
+          <Text style={{backgroundColor: 'transparent'}}> {this.state.savedText} </Text>
+          <Image
+            source = {require('../res/meavatar.png')}
+            style = {{width: '30%', height: 100}}
+          />
+          </View>
+        </View>
+      );
+    }
   }
 
-  onPressLearnMore() {
-    this.setState({savedText: this.state.savedText + this.state.text + "\n"});
-    this.setState({text: ""});
-    var day = new Date().getDate();
-    var month = new Date().getMonth() + 1;
-    var year = new Date().getFullYear();
-    this.setState({date: day + '/' + month + '/' + year});
+export default class Diary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      adding: false,
+      searchText: 'Search',
+      numEntries: 0,
+    };
+      onPressEdit = this.onPressEdit.bind(this)
+  }
+
+  onPressEdit() {
+    this.setState({adding: true});
   }
 
   render () {
-    return (
-      <View style={styles.container}>
-        <Image style={styles.backgroundImage} source={require('../res/cloud.png')}/>
-        <TextInput
-          blurOnSubmit = {false}
-          style = {{height: 80, width: 400, borderColor: 'blue', borderWidth: 1}}
-          onChangeText = {(text) => this.setState({text})}
-          value = {this.state.text}
-        />
-        <View style={styles.diaryView}>
-        <Button
-          title = "Save Entry"
-          color = "#841584"
-          onPress={onPressLearnMore}
+    return(
+      <View>
+      {this.state.adding ? <DiaryEntry/> :
+        <View style={styles.container}>
+            <Image style={styles.backgroundImage} source={require('../res/cloud.png')}/>
+
+          <View style = {styles.list}>
+          <TextInput
+            blurOnSubmit = {false}
+            style = {{height: 40, width: 400, backgroundColor: 'transparent', borderColor: 'blue', borderWidth: 1}}
+            onChangeText = {(searchText) => this.setState({searchText})}
+            value = {this.state.searchText}
           />
-        <Text> {this.state.date} </Text>
-        <Text style={{backgroundColor: 'transparent'}}> {this.state.savedText} </Text>
-        <Image
-          source = {require('../res/meavatar.png')}
-          style = {{width: '30%', height: 100}}
-        />
+          </View>
+          <View style = {styles.list}>
+            <Image style={{height: 80, width: 350}} source = {require('../res/icons/BoxMyDiary.png')}/>
+          </View>
+          <View style = {styles.list}>
+          <TouchableOpacity style = {styles.addButton} onPress = {onPressEdit}>
+            <Image style={styles.addButton} source = {require('../res/icons/plus.png')}/>
+          </TouchableOpacity>
+          </View>
         </View>
+      }
       </View>
-    );
+    )
   }
 }
-
-
 
 var styles = StyleSheet.create({
   container:{
     flex:1,
+  },
+  summary: {
+    backgroundColor: 'transparent',
+    justifyContent: 'center'
+  },
+  addButton: {
+    alignSelf: 'flex-end',
+    position: 'absolute',
+    flex: 1,
+    bottom: 0,
+    left: 0,
+    height: 40,
+    width: 40,
+  },
+  button: {
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    height: 50,
   },
   list: {
        justifyContent: 'center',
