@@ -9,8 +9,14 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image} from 'react-native';
 
-import firebase from 'react-native-firebase';
+//import firebase from 'react-native-firebase';
 
+export default class Register extends Component {
+  render() {
+    <View/>
+  }
+}
+/*
 
 export default class Register extends Component {
   render() {
@@ -61,7 +67,7 @@ export default class Register extends Component {
         </View>
     );
   }
-}
+} */
 
 var styles = StyleSheet.create({
   backgroundImage:{
