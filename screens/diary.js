@@ -8,6 +8,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity} from 'react-native';
+import entryInfo from '../components/diarycomp';
 
 class DiaryTextInput extends Component{
   render () {
@@ -34,6 +35,17 @@ class DiaryEntry extends Component<Props> {
         date: '',
       };
       onPressLearnMore = this.onPressLearnMore.bind(this)
+      sendFireBaseEntry = this.sendFireBaseEntry.bind(this)
+    }
+
+    sendFireBaseEntry() {
+      alert(
+        'Sending caption, date, images[] to fireBase',
+        [
+          {text: 'Ok', onPress: () => console.log('Ok pressed')},
+        ],
+        {cancelable: false}
+      )
     }
 
     onPressLearnMore() {
@@ -43,6 +55,7 @@ class DiaryEntry extends Component<Props> {
       var month = new Date().getMonth() + 1;
       var year = new Date().getFullYear();
       this.setState({date: day + '/' + month + '/' + year});
+      {sendFireBaseEntry()}
     }
 
     render () {
@@ -61,6 +74,9 @@ class DiaryEntry extends Component<Props> {
             color = "#841584"
             onPress={onPressLearnMore}
             />
+            <Button
+              title = "Add photo"
+              />
           </View>
           <View style={styles.list}>
           <Text> {this.state.date} </Text>
