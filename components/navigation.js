@@ -15,11 +15,6 @@ export class NavigationButton extends Component {
           onPressOut={() => this.setState({pressStatus: true}, () => {this.props.navigation.navigate(this.props.navKey)})}
           activeOpacity={0.8}
         >
-          <Image
-            style={this.state.pressStatus ? styles.image : styles.imagePressed}
-            source={this.props.src}
-            resizeMode="contain"
-          />
         </TouchableOpacity>
       </View>
     );
