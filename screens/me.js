@@ -54,7 +54,7 @@ export default class Me extends Component {
               <Text style={styles.buttonText}>My Itinerary</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.optionsView} onPress={()=>{alert("No one cares :)")}}>
+            <TouchableOpacity style={styles.optionsView} onPress={()=>{this.props.navigation.navigate('About')}}>
               <Image style={styles.image} source={require('../res/icons/About.png')}/>
               <Text style={styles.buttonText}>About</Text>
             </TouchableOpacity>

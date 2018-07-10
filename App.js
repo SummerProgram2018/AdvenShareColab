@@ -17,6 +17,7 @@ import Plan from "./screens/plan";
 import Login from "./screens/login";
 import Register from "./screens/register";
 import ImageBrowser from "./screens/imageBrowser";
+import About from "./screens/about"
 
 const HomeTab = createStackNavigator(
   {
@@ -36,6 +37,9 @@ const MeTab = createStackNavigator(
       navigationOptions: {
         header: null
       }
+    },
+    About: {
+      screen: About
     }
   }
 )
@@ -152,10 +156,10 @@ export default class App extends React.Component {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
   }
-  
+
   login = () => {this.setState({loggedIn: true})}
   logout = () => {this.setState({loggedIn: false})}
-  
+
   render() {
     console.disableYellowBox = true;
     return (this.state.loggedIn ? <RootTab /> : <LoginTab screenProps={this.login}/> );
