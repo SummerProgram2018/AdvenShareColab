@@ -99,7 +99,6 @@ export default class Login extends Component {
     return (
         <View style={styles.container}>
           <View style={styles.keyboardShown}>
-            <Image style={styles.backgroundImage} source={require('../res/LoginBackground.png')}/>
             <View style = {styles.advenShareLogo}>
               <Image source ={require('../res/AdvenShare.png')} style={styles.logo}/>
             </View>
@@ -110,7 +109,10 @@ export default class Login extends Component {
             <View style = {styles.additionalLinks}>
             </View>
           </View>
-          {this.state.keyboard ? <View/> : <View style = {styles.placeHolder}/>}
+          {this.state.keyboard ? <View/> :
+            <View style = {styles.placeHolder}>
+              <Image style={styles.backgroundImage} source={require('../res/CloudLogoLogin.png')}/>
+            </View>}
         </View>
     );
   }
@@ -130,7 +132,8 @@ var styles = StyleSheet.create({
     //justifyContent: 'center',
   },
   keyboardShown:{
-    flex:5
+    flex:5,
+    backgroundColor: 'rgb(172, 196, 245)'
   },
   list: {
     justifyContent: 'center',
@@ -183,7 +186,7 @@ var styles = StyleSheet.create({
   },
   placeHolder: {
     flex: 2,
-    backgroundColor: 'blue'
+    backgroundColor: 'rgb(172, 196, 245)'
   },
   inputsContainer: {
     height: 165,
