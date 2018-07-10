@@ -109,6 +109,9 @@ export default class Login extends Component {
             <View style = {styles.additionalLinks}>
             </View>
           </View>
+          <TouchableOpacity
+            onPress={() => {this.props.navigation.navigate('Register')}}
+            style={{height : 10}}/>
           {this.state.keyboard ? <View/> :
             <View style = {styles.placeHolder}>
               <Image style={styles.backgroundImage} source={require('../res/CloudLogoLogin.png')}/>
