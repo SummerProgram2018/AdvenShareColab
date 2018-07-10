@@ -28,7 +28,7 @@ class MeMap extends Component {
             <Image style = {styles.meIcon} source = {require('../res/meavatar.png')} />
             <Text style = {styles.avatarText}>Hannah Jury</Text>
             <TouchableOpacity style={styles.optionsView} onPress={()=>{alert("Location services are unavailable :)")}}>
-              <Image style={styles.locationImage} source={require('../res/icons/About.png')}/>
+              <Image style={styles.image} source={require('../res/icons/location.png')}/>
               <Text style={styles.locationText}>Your Location</Text>
             </TouchableOpacity>
           </View>
@@ -47,7 +47,6 @@ export default class Me extends Component {
         <View style={styles.container}>
 
           <MeMap/>
-
 
           <View styles={styles.buttonList}>
             <TouchableOpacity style={styles.optionsView} onPress={()=>{alert("You have no plans today you loser :)")}}>
@@ -75,7 +74,6 @@ var styles = StyleSheet.create({
   container:{
     backgroundColor: 'rgb(256, 256, 256)',
     flex:1,
-//    alignItems: 'center',
   },
 
   buttonList: {
@@ -112,24 +110,16 @@ var styles = StyleSheet.create({
    },
 
    image: {
+     flex: 1,
      justifyContent: 'center',
-     height: 30,
      resizeMode:"contain",
+     flexDirection: 'row',
+     height: 30,
      padding: 20,
    },
 
-   locationImage: {
-     flex:1,
-     flexDirection: 'row',
-     height: 18,
-     resizeMode:"contain",
-  //   margin: 10 0 0 0,
-   },
-
-
    buttonText: {
-    flex:1,
-    textAlign: 'center', // <-- the magic
+    flex:3,
     fontWeight: 'bold',
     color: 'rgb(116, 156, 237)',
     fontSize: 28,
@@ -146,11 +136,12 @@ var styles = StyleSheet.create({
   },
 
   locationText: {
-   flex:2,
-   fontWeight: 'bold',
-   color: 'rgb(116, 156, 237)',
-   fontSize: 20,
-
+    flex:3,
+    fontWeight: 'bold',
+    color: 'rgb(116, 156, 237)',
+    fontSize: 20,
+    marginTop: 0,
+    width: "100%",
   },
 
    overlay: {
