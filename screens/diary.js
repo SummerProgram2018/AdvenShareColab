@@ -9,6 +9,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity} from 'react-native';
 import entryInfo from '../components/diarycomp';
+import NavigationButton from '../components/navigation';
 
 class DiaryTextInput extends Component{
   render () {
@@ -74,9 +75,9 @@ class DiaryEntry extends Component<Props> {
             color = "#841584"
             onPress={onPressLearnMore}
             />
-            <Button
-              title = "Add photo"
-              />
+            <TouchableOpacity onPress={()=>this.props.navigation.navigate('ImageBrowser')}>
+              <Text>HI</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.list}>
           <Text> {this.state.date} </Text>
@@ -117,7 +118,7 @@ export default class Diary extends Component {
   render () {
     return(
       <View>
-      {this.state.adding ? <DiaryEntry/> :
+      {this.state.adding ? <DiaryEntry navigation={this.props.navigation}/> :
         <View style={styles.container}>
             <Image style={styles.backgroundImage} source={require('../res/cloud.png')}/>
 

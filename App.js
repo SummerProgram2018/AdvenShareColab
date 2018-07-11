@@ -55,6 +55,9 @@ const DiaryTab = createStackNavigator(
     ImageBrowser: {
       screen: ImageBrowser
     }
+  },
+  {
+     initialRouteName: "DiaryTab",
   }
 )
 

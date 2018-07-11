@@ -10,20 +10,17 @@ export class entryInfo extends Component {
       date: "",
       images: [],
     };
-    componentDidMount() {
-      var day = new Date().getDate();
-      var month = new Date().getMonth() + 1;
-      var year = new Date().getFullYear();
-      this.setState({date: day + '/' + month + '/' + year});
-    }
   }
 
 
   render() {
     return (
+      <View>
       <Image style={{height: 80, width: 350}} source = {require('../res/icons/BoxMyDiary.png')}/>
       <Text style={styles.dateText}> {this.state.date} </Text>
       <Text style={styles.diaryText}> "This is my diary entry something something lol hey adrian's waterproof again" </Text>
+      </View>
+    )
   }
 }
 
