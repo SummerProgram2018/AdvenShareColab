@@ -98,12 +98,20 @@ export default class Diary extends Component {
       adding: false,
       searchText: 'Search',
       numEntries: 0,
+      date: 'whoops',
     };
       onPressEdit = this.onPressEdit.bind(this)
   }
 
   onPressEdit() {
     this.setState({adding: true});
+  }
+
+  componentDidMount() {
+    var day = new Date().getDate();
+    var month = new Date().getMonth() + 1;
+    var year = new Date().getFullYear();
+    this.setState({date: day + '/' + month + '/' + year});
   }
 
   render () {
@@ -122,7 +130,9 @@ export default class Diary extends Component {
           />
           </View>
           <View style = {styles.list}>
-            <Image style={{height: 80, width: 350}} source = {require('../res/icons/BoxMyDiary.png')}/>
+          <Image style={{height: 80, width: 350}} source = {require('../res/icons/BoxMyDiary.png')}/>
+          <Text style={styles.dateText}> {this.state.date} </Text>
+          <Text style={styles.diaryText}> "This is my diary entry something something lol hey adrian's waterproof again" </Text>
           </View>
           <View style = {styles.list}>
           <TouchableOpacity style = {styles.addButton} onPress = {onPressEdit}>
@@ -139,6 +149,35 @@ export default class Diary extends Component {
 var styles = StyleSheet.create({
   container:{
     flex:1,
+  },
+  diaryText: {
+    flex: 1,
+    flexWrap: 'wrap',
+    position: 'absolute',
+    bottom: 0,
+    top: 0,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 18,
+    color: 'black',
+    textAlign: 'center',
+  },
+  dateText: {
+    flex: 1,
+    flexWrap: 'wrap',
+    position: 'absolute',
+    bottom: 0,
+    top: 0,
+    left: 0,
+    right: 270,
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 24,
+    color: 'black',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   summary: {
     backgroundColor: 'transparent',
